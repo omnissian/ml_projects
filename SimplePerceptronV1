@@ -1,0 +1,69 @@
+#simple perceptron
+import numpy as np
+import os
+import glob
+import codecs
+import re
+
+
+# path='C:\Users\Anatoly\Desktop\Work1\plgn\data10by10digitstest\forlearn7'
+path='C:\\Users\\Anatoly\\Desktop\\Work1\\plgn\\data10by10digitstest\\forlearn7\\'
+
+data_set=[]
+
+# file_obj1=codecs.open("C:\\Users\\Anatoly\\Desktop\\Work1\\plgn\\data10by10digitstest\\forlearn7\\1.txt", 'r')
+# file_obj1=codecs.open("C:\Users\Anatoly\Desktop\Work1\plgn\data10by10digitstest\forlearn7\1.txt", 'r', encoding='windows-1252')
+
+
+# for r, d, f in os.walk(path):
+#     for file in f:
+#         if '.txt' in file:
+#             files.append(os.path.join(r, file))
+
+
+for filename in os.listdir(path):
+    example = []
+
+    tmp_path = path + filename
+    # for filename in glob.glob(os.path.join(path,'.txt')):
+    for example_file in codecs.open(tmp_path,'r').readlines():
+        # tmp_path=path+filename
+        # tmp_path.join(path)
+        # tmp_path.join(filename)
+        # file_obj1=codecs.open(filename,'r')
+        # file_obj1=open(filename,'r')
+
+        # b=example_file.readlines() # doesnt work
+        # b=file_obj1.readlines()
+        for stringb in example_file:
+            tmp=stringb
+            tmp=re.split('[^0-1]',tmp)
+            for char in tmp[0]:
+                if (int(char)):
+                    example.append(1)
+                else:
+                    example.append(0)
+    data_set.append(example)
+
+    print ("-----------")
+print("end 1")
+print("print(data_set[0])", data_set[0])
+print("print(data_set[1])", data_set[1])
+
+print("print(data_set[0][0])", data_set[0][0])
+print("print(data_set[0][1])", data_set[0][1])
+print("print(len(data_set))", len(data_set))
+print("end 2")
+
+
+
+
+#
+# for filename in glob.glob(os.path.join(path, '*.txt'):
+#     file_obj=open(filename,'r')
+#     example.append()
+
+
+
+
+
