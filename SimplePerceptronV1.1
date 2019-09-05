@@ -1,0 +1,26 @@
+#simple perceptron
+import numpy as np
+import os
+import glob
+import codecs
+import re
+# path='C:\Users\Anatoly\Desktop\Work1\plgn\data10by10digitstest\forlearn7'
+path='C:\\Users\\Anatoly\\Desktop\\Work1\\plgn\\data10by10digitstest\\forlearn7\\'
+data_set=[]
+
+for filename in os.listdir(path):
+    example = []
+    tmp_path = path + filename
+    for example_file in codecs.open(tmp_path,'r').readlines():
+        for stringb in example_file:
+            tmp=stringb
+            tmp=re.split('[^0-1]',tmp)
+            for char in tmp[0]:
+                if (int(char)):
+                    example.append(1)
+                else:
+                    example.append(0)
+    data_set.append(example)
+    print ("-----------")
+    
+print("end 2")
