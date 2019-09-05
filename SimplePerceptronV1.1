@@ -3,26 +3,92 @@ import os
 import glob
 import codecs
 import re
+import random
+import math
+
+def parser (path='C:\\Users\\Anatoly\\Desktop\\Work1\\plgn\\data10by10digitstest\\forlearn7\\'):
+    data_set = []
+    for filename in os.listdir(path):
+        tmp_path = path + filename
+        file_obj = codecs.open(tmp_path, 'r')
+        list_obj = file_obj.readlines()
+        example = []
+        tmp_splitted = []
+        # print(list_obj)
+        for string_n in list_obj:
+            tmp = re.split('[^0-1]', string_n)
+            tmp_splitted.append(tmp[0])
+        for line_n in tmp_splitted:
+            for char_n in line_n:
+                if ((int(char_n))):
+                    example.append(1)
+                else:
+                    example.append(0)
+        data_set.append(example)
+        file_obj.close()
+    return data_set
+
+def actv_func_logist(neuron_in):
+    neuron_in=neuron_in*(-1)
+    neuron_out= ((1.0)/(1.0+math.exp(neuron_in)))
+    return neuron_out
+
+data_set=parser()
+# input_data=np.array(data_set, float)
+# print("shape (input_data) ", input_data.shape)
+input_data=np.asarray(data_set,float)
+#-------forward propagation---------- labels for data have const values and manual input
+M=1
+N=3
+O=1
+# count of hidden layers = M
+# count of neurons at one hidden layer = N
+# count of neurons at output layer = O
+set_size,inputs=input_data.shape # inputs - var for count of inputs
+labels=np.ones(set_size, float)  # labels for data
+cumulative_error= 0.0
+
+# in_W=np.full((inputs,1),float) # "good" array but how should i initialize it?
+# in_W=np.ndarray.fill(random.randrange(0, 1)) # doesnt work
+#--!!!WARNING!!!! if here is only one Hidden layer, then here will be only input matrix of weights and output!!!
+#---!!!!! two matrices of weights total----------
+in_W=np.random.rand(inputs, N)
+
+# matrix of weights between inputs and first hidden layer
+# shape: d= inputs, neurons = N
+# q,b=input_data.shape # q= 10, b= 100, q-number of examples, b - number of "inputs"
+out_W=np.random.rand(N,O)
+# matrix of weights between last hidden layer and (number=1=O) output(s)
+# initializing 3D matrix for weights
+# array(whole network) of 2D matrices (W)
+# every matrix represents connections from previous layer to current
+inD,in_M=in_W.shape
+outD,out_M=out_W.shape
+W=np.vstack((in_W,out_W))
+
+# W=np.array()
+# W=np.append((in_W,out_W))
+
+# W=np.append(in_W)
+
+# W=[]
+# W.append([])
+# W.append(in_W)
+# W.append(out_W)
+# wD,wN,wN=W
+# for m in M:
+#     for N
+
+#-----------------------------------
+
+print("end1")
+print("end 2")
 
 
-# path='C:\Users\Anatoly\Desktop\Work1\plgn\data10by10digitstest\forlearn7'
-path='C:\\Users\\Anatoly\\Desktop\\Work1\\plgn\\data10by10digitstest\\forlearn7\\'
 
-data_set=[]
 
-for filename in os.listdir(path):
-    tmp_path = path + filename
-    file_obj=codecs.open(tmp_path,'r')
-    list_obj=file_obj.readlines()
-    example=[]
-    tmp_splitted=[]
-    # print(list_obj)
-    for string_n in list_obj:
-        tmp=re.split('[^0-1]',string_n)
-        tmp_splitted.append(tmp[0])
-    for line_n in tmp_splitted:
-        for char_n in line_n:
-            if ((int(char_n))):
-                example.append(1)
-            else: example.append(0)
-    data_set.append(example)
+
+
+
+
+
