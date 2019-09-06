@@ -52,6 +52,33 @@ def cost_func_square(output, label ):
 
     return ((0.5)*(output-label)**2)
 
+    #in the func below - d_cost_sq
+    # output is the sum of all outputs
+    # label is the sum of all labels
+    # ?question is how to represent as a list\ and where to calculate the mean values?
+def d_cost_sq(output, label):
+   # output
+
+    return 0
+
+def changer(value):
+    value[0][0] = 2    # изменит и оригинал (если это list) или numpy array, но не изменит int val
+    # как понимаю передаются указатели массивов, но копии "базовых типов"
+#
+# c=np.ones((1,1),float)
+# print (c)
+# changer (c)
+# print (c)
+# b=23
+
+
+
+
+
+#list of labels manually created for every of two classes of objects
+labels_yes=[]
+
+
 data_set=parser()
 # input_data=np.array(data_set, float)
 # print("shape (input_data) ", input_data.shape)
@@ -75,7 +102,7 @@ in_W=np.random.rand(inputs, N)
 
 # matrix of weights between inputs and first hidden layer
 # shape: d= inputs, neurons = N
-# q,b=input_data.shape # q= 10, b= 100, q-number of examples, b - number of "inputs"
+q,b=input_data.shape # q= 10, b= 100, q-number of examples, b - number of "inputs"
 out_W=np.random.rand(N,O)
 # matrix of weights between last hidden layer and (number=1=O) output(s)
 # initializing 3D matrix for weights
@@ -87,6 +114,22 @@ outD,out_M=out_W.shape
 #... except for the concatenation axis must match exactly
 comp_matrix_tmp=np.array([],float)
 label_of_exemplar = 0 #
+#we should introduce batch size
+
+batch_size=2 # size of samples in batch size
+q,count_of_inputs=input_data.shape
+
+#list of labels manually created for every of two classes of objects
+labels_is_in_class=np.ones((q, 1),dtype=float)
+lbln, lblm=labels_is_in_class.shape
+# labels_not_is_class=np.zeros(n_q, float) # for the future data set !!!
+# if(q/batch_size):
+#
+# for ()
+
+
+
+
 for exemplar in input_data:
     # error_example=0.0
     # ind_d, ind_n=exemplar.shape # shape = (100,)
@@ -113,7 +156,15 @@ for exemplar in input_data:
         error_example=cost_func_square(comp_matrix_tmp[0][0], labels[label_of_exemplar])
         # cumulative_error+=comp_matrix_tmp[0][0]
         cumulative_error+=error_example
+
     label_of_exemplar+=1
+
+    #-----OUTPUT v2 of neural network------------
+    # if(O>1):
+    #     pass
+    # else:
+    #     comp_matrix_tmp=np.matmul()
+
 
     # # --------------------------------------
     # for neuron_in in comp_matrix_tmp[0]:
