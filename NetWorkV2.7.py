@@ -5,7 +5,7 @@ import codecs
 import re
 import random
 import math
-
+#https://github.com/f4xt/public_tr4sh/blob/master/Information
 
 # ----------------------------------------
 # x = np.array([[2], [4], [6], [8]])
