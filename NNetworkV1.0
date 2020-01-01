@@ -6,6 +6,7 @@ import re
 import random
 import math
 
+
 def parser (path='C:\\Users\\Anatoly\\Desktop\\Work1\\plgn\\data10by10digitstest\\forlearn7\\'):
     data_set = []
     for filename in os.listdir(path):
